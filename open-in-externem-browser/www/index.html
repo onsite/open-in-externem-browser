@@ -1,0 +1,37 @@
+
+<!doctype html>
+<html>
+    
+<head>
+<meta charset="utf-8">
+<title>extern</title>
+</head>
+
+<body>
+<script src="phonegap.js"></script>
+<script src="jquery-1.11.3.min.js" type="text/javascript"></script>
+<script>
+//define tab or click event type on root level (can be combined with modernizr)
+iaEvent = "click";
+if (typeof navigator !== "undefined" && navigator.app) {
+   iaEvent = "tap";
+}
+$('.ext-link').each.bind(iaEvent, function() {
+    if (typeof navigator !== "undefined" && navigator.app) {
+        // Mobile device.
+        var linktarget = this.attr("href");
+        navigator.app.loadUrl(linktarget, {openExternal: true});
+    } else {
+        // Possible web browser
+        window.open(linktarget, "_blank");
+    }
+});
+</script>
+
+<a id="ext-link" href="#" >Google it</a>
+
+<access origin="http://127.0.0.1*"/>
+<access origin="http://phonegap.com" subdomains="true" />
+
+</body>
+</html>
